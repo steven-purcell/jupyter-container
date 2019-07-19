@@ -11,9 +11,7 @@ RUN apt-get update && \
     apt-get -y install python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Anaconda
-#RUN wget https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh && \
-#    bash Anaconda3-5.3.1-Linux-x86_64.sh
+# Install Jupyter
 RUN pip3 install --upgrade pip
 RUN pip3 install jupyter
 
@@ -40,10 +38,11 @@ RUN pip3 install \
     'h5py' \
     'vincent' \
     'protobuf' \
-    'xlrd'
-    # Activate ipywidgets extension in the environment that runs the notebook server
-#    jupyter nbextension enable --py widgetsnbextension --sys-prefix
+    'xlrd' \
+    'tensorflow' \
+    'setuptools>=41.0.0' \
+    'pandas-profiling'
 
 EXPOSE 8888
 
-ENTRYPOINT jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root
+ENTRYPOINT jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.token='' --NotebookApp.password='' --no-browser
