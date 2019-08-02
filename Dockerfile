@@ -40,7 +40,6 @@ RUN pip3 install \
     'vincent' \
     'protobuf' \
     'xlrd' \
-    'tensorflow' \
     'pandas-profiling' \
     'pyboto' \
     'pyod' \
