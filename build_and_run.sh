@@ -14,7 +14,3 @@ else
     docker run -p 8888:8888 -v /Users/stevenpurcell/ImageVolumes/Jupyter:/home --restart unless-stopped \
     jupyter &> output.log &
 fi
-
-
-
-
