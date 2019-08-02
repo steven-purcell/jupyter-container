@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 USER root
 
@@ -7,13 +7,14 @@ WORKDIR /home
 # ffmpeg for matplotlib anim
 RUN apt-get update && \
     apt-get install -y --no-install-recommends ffmpeg && \
-    apt-get install -y wget && \
-    apt-get -y install python3-pip && \
+    apt-get install -y --no-install-recommends wget && \
+    apt-get install -y --no-install-recommends python3-pip && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Jupyter
 RUN pip3 install --upgrade pip
-RUN pip3 install jupyter
+RUN pip3 install setuptools>=41.0.0 
+RUN pip3 install 'PyYAML<=5.1,>=3.10' jupyter
 
 # Install Python 3 packages
 RUN pip3 install \
@@ -40,8 +41,12 @@ RUN pip3 install \
     'protobuf' \
     'xlrd' \
     'tensorflow' \
-    'setuptools>=41.0.0' \
-    'pandas-profiling'
+    'pandas-profiling' \
+    'pyboto' \
+    'pyod' \
+    'torch' \
+    'tensorflow' \
+    'awscli'
 
 EXPOSE 8888
 
